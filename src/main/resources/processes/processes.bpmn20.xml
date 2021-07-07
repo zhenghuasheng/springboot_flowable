@@ -5,12 +5,12 @@
              typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
              targetNamespace="http://www.flowable.org/processdef">
 
-    <process id="Leave" name="LeaveProcess" isExecutable="true">
+    <process id="Leave_zhs" name="LeaveProcess_zhs" isExecutable="true">
         <startEvent id="startLeave" name="开始"/>
         <sequenceFlow id="flowStart" sourceRef="startLeave" targetRef="leaveTask"/>
         <userTask id="leaveTask" name="请假" flowable:assignee="${leaveTask}"/>
         <sequenceFlow id="modeFlow" sourceRef="leaveTask" targetRef="managerTask"/>
-        <userTask id="managerTask" name="经理审核"/>
+        <userTask id="managerTask" name="经理审核" flowable:candidateGroups="managers"/>
         <sequenceFlow id="jugdeFlow" sourceRef="managerTask" targetRef="managerJudgeTask"/>
         <exclusiveGateway id="managerJudgeTask"/>
         <sequenceFlow id="flowEnd" name="通过" sourceRef="managerJudgeTask" targetRef="endLeave">
@@ -29,7 +29,7 @@
 
     </process>
     <bpmndi:BPMNDiagram id="BPMNDiagram_process">
-        <bpmndi:BPMNPlane bpmnElement="Leave" id="BPMNPlane_process">
+        <bpmndi:BPMNPlane bpmnElement="Leave_zhs" id="BPMNPlane_process">
             <bpmndi:BPMNShape bpmnElement="leaveTask" id="BPMNShape_leaveTask">
                 <omgdc:Bounds height="79.99999999999999" width="100.0" x="304.60807973558974" y="122.00000000000001"/>
             </bpmndi:BPMNShape>

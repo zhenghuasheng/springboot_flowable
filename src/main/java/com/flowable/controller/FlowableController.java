@@ -45,9 +45,10 @@ public class FlowableController {
     @Autowired
     private HistoryService historyService;
 
+    @PostConstruct
     public void init() {
-        List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery().finished().list();
-        System.out.println(list);
+//        List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery().finished().list();
+//        System.out.println(list);
     }
 
 
@@ -56,7 +57,7 @@ public class FlowableController {
     public String startLeaveProcess(String staffId) {
         HashMap<String, Object> map = new HashMap<>(4);
         map.put("leaveTask", staffId);
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("Leave", map);
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("Leave_zhs", map);
         StringBuilder sb = new StringBuilder();
         sb.append("创建请假流程 processId：" + processInstance.getId());
         List<Task> tasks = taskService.createTaskQuery()
